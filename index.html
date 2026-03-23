@@ -87,33 +87,37 @@
     <!-- Navbar Fissa Dinamica -->
     <nav id="navbar" class="fixed w-full bg-transparent border-b border-transparent z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20 transition-all duration-300" id="navbar-content">
-                <!-- Logo e Titolo nella Navbar -->
-                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                    <img src="cittadivarese.svg" alt="Logo Torneo" class="h-12 w-auto drop-shadow-md transition-transform duration-300 hover:scale-105">
-                    <span class="font-heading text-varese-yellow text-xl tracking-wider hidden sm:block drop-shadow-md">TORNEO CITTÀ DI VARESE U12</span>
+            <div class="flex items-center justify-between h-20 transition-all duration-300 w-full" id="navbar-content">
+                
+                <!-- Logo a sinistra -->
+                <div class="flex-shrink-0 cursor-pointer z-20" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <img src="cittadivarese.svg" alt="Logo Torneo" class="h-10 md:h-12 w-auto drop-shadow-md transition-transform duration-300 hover:scale-105">
+                </div>
+
+                <!-- Titolo Centrale (Centrato perfettamente su mobile e desktop) -->
+                <div class="flex-1 text-center px-2 cursor-pointer flex flex-col justify-center z-10" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <span class="font-heading text-white text-[10px] sm:text-xs md:text-sm tracking-widest uppercase opacity-90 drop-shadow-md">Torneo Under 12</span>
+                    <span class="font-heading text-varese-yellow text-sm sm:text-lg md:text-xl tracking-wider uppercase drop-shadow-md">"Città di Varese"</span>
                 </div>
                 
                 <!-- Menu Desktop -->
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-6 font-vehicle font-bold uppercase">
-                        <a href="#eventi" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Programma</a>
-                        <a href="#risultati" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Risultati</a>
-                        <a href="#menu-pasti" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Menù</a>
-                        <a href="#merchandising" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Shop</a>
-                        <a href="#foto" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Foto</a>
-                    </div>
+                <div class="hidden md:flex flex-shrink-0 z-20 ml-4 items-baseline space-x-6 font-vehicle font-bold uppercase">
+                    <a href="#eventi" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Programma</a>
+                    <a href="#risultati" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Risultati</a>
+                    <a href="#menu-pasti" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Menù</a>
+                    <a href="#merchandising" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Shop</a>
+                    <a href="#foto" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Foto</a>
                 </div>
                 
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
+                <!-- Mobile menu button a destra -->
+                <div class="md:hidden flex flex-shrink-0 items-center z-20">
                     <button id="mobile-menu-btn" class="text-varese-yellow hover:text-white focus:outline-none transition-transform active:scale-95">
                         <i class="fas fa-bars text-3xl drop-shadow-md"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu (Ora con apertura Smooth a tendina) -->
+        <!-- Mobile Menu (Apertura Smooth a tendina) -->
         <div id="mobile-menu" class="md:hidden bg-black/95 backdrop-blur-md border-b border-varese-yellow/20 font-vehicle font-bold uppercase transition-all duration-500 ease-in-out max-h-0 overflow-hidden opacity-0 origin-top">
             <div class="px-2 pt-2 pb-6 space-y-2 sm:px-3 text-center">
                 <a href="#eventi" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Programma</a>
