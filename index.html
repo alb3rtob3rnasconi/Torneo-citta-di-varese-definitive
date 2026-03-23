@@ -383,7 +383,7 @@
         </div>
     </section>
 
-    <!-- 4. Sezione Merchandising (Ora con blocchi più piccoli e fitti) -->
+    <!-- 4. Sezione Merchandising -->
     <section id="merchandising" class="py-20 bg-zinc-950 overflow-hidden">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-12 reveal">
@@ -531,8 +531,8 @@
         </div>
     </section>
 
-    <!-- 5. Sezione Foto e Footer -->
-    <footer id="foto" class="bg-zinc-950 pt-16 pb-8 border-t border-varese-yellow/20 relative overflow-hidden">
+    <!-- 5. Sezione Foto e Footer (Modificata visibilità finale) -->
+    <footer id="foto" class="bg-zinc-950 pt-16 pb-16 border-t border-varese-yellow/20 relative overflow-hidden">
         <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
             
             <!-- Link alle Foto -->
@@ -546,10 +546,11 @@
                 </a>
             </div>
 
-            <img src="cittadivarese.svg" alt="Logo Piccolo" class="w-32 mx-auto mb-6 opacity-80 drop-shadow-md reveal" style="transition-delay: 200ms;">
+            <!-- RIMOSSA CLASSE REVEAL DA QUI IN GIÙ: elementi sempre visibili al 100% -->
+            <img src="cittadivarese.svg" alt="Logo Piccolo" class="w-32 mx-auto mb-6 opacity-80 drop-shadow-md">
             
             <!-- TESTO COPYRIGHT MODIFICATO: BIANCO E PICCOLO -->
-            <p class="text-white mb-6 text-xs font-light reveal" style="transition-delay: 300ms;">
+            <p class="text-white text-xs font-light">
                 &copy; 2026 Torneo U12 Città di Varese. Tutti i diritti riservati.<br>
                 Hockey Club Varese 1977 S.C.S.D.
             </p>
@@ -621,7 +622,7 @@
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
                 var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100; // Quanto deve entrare nello schermo prima di apparire
+                var elementVisible = 50; // Ridotto per far apparire elementi anche verso fine pagina
 
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
