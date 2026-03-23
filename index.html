@@ -113,8 +113,8 @@
                 </div>
             </div>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-md border-b border-varese-yellow/20 font-vehicle font-bold uppercase transition-all duration-300 origin-top">
+        <!-- Mobile Menu (Ora con apertura Smooth a tendina) -->
+        <div id="mobile-menu" class="md:hidden bg-black/95 backdrop-blur-md border-b border-varese-yellow/20 font-vehicle font-bold uppercase transition-all duration-500 ease-in-out max-h-0 overflow-hidden opacity-0 origin-top">
             <div class="px-2 pt-2 pb-6 space-y-2 sm:px-3 text-center">
                 <a href="#eventi" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Programma</a>
                 <a href="#risultati" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Risultati</a>
@@ -383,147 +383,147 @@
         </div>
     </section>
 
-    <!-- 4. Sezione Merchandising -->
+    <!-- 4. Sezione Merchandising (Ora con blocchi più piccoli e fitti) -->
     <section id="merchandising" class="py-20 bg-zinc-950 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16 reveal">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-12 reveal">
                 <h2 class="text-3xl md:text-4xl font-heading text-varese-yellow mb-2 uppercase">Merchandising Ufficiale</h2>
                 <div class="w-24 h-1 bg-varese-yellow mx-auto rounded transition-all duration-500 hover:w-32"></div>
                 <p class="mt-4 text-gray-400">Porta a casa un ricordo del Torneo. Acquistabili presso lo stand al palaghiaccio.</p>
             </div>
 
-            <!-- Griglia CSS: su mobile 1 colonna, tablet 2, desktop 3. Totale 12 elementi -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <!-- Griglia CSS compattata: su mobile 2 colonne, tablet 3, desktop 4. Totale 12 elementi -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
 
-                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal">
+                <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:-translate-y-1.5 cursor-pointer reveal">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
-                        <i class="fas fa-tshirt text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
-                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 20.00</span>
+                        <i class="fas fa-tshirt text-5xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-110 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-[11px] font-bold px-2 py-1 rounded-full z-20 shadow-md transform group-hover:scale-105 transition-transform">€ 20.00</span>
                     </div>
-                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
-                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">T-Shirt Torneo</h3>
+                    <div class="p-3 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-sm text-white uppercase group-hover:text-varese-yellow transition-colors line-clamp-1">T-Shirt Torneo</h3>
                     </div>
                 </div>
 
-                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 100ms;">
+                <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:-translate-y-1.5 cursor-pointer reveal" style="transition-delay: 100ms;">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
-                        <i class="fas fa-tshirt text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
-                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 35.00</span>
+                        <i class="fas fa-tshirt text-5xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-110 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-[11px] font-bold px-2 py-1 rounded-full z-20 shadow-md transform group-hover:scale-105 transition-transform">€ 35.00</span>
                     </div>
-                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
-                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Felpa con Cappuccio</h3>
+                    <div class="p-3 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-sm text-white uppercase group-hover:text-varese-yellow transition-colors line-clamp-1">Felpa Cappuccio</h3>
                     </div>
                 </div>
 
-                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 200ms;">
+                <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:-translate-y-1.5 cursor-pointer reveal" style="transition-delay: 200ms;">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
-                        <i class="fas fa-hat-cowboy text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
-                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 15.00</span>
+                        <i class="fas fa-hat-cowboy text-5xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-110 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-[11px] font-bold px-2 py-1 rounded-full z-20 shadow-md transform group-hover:scale-105 transition-transform">€ 15.00</span>
                     </div>
-                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
-                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Cappellino Ufficiale</h3>
+                    <div class="p-3 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-sm text-white uppercase group-hover:text-varese-yellow transition-colors line-clamp-1">Cappellino Ufficiale</h3>
                     </div>
                 </div>
 
-                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal">
+                <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:-translate-y-1.5 cursor-pointer reveal">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
-                        <i class="fas fa-hockey-puck text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
-                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 8.00</span>
+                        <i class="fas fa-hockey-puck text-5xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-110 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-[11px] font-bold px-2 py-1 rounded-full z-20 shadow-md transform group-hover:scale-105 transition-transform">€ 8.00</span>
                     </div>
-                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
-                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Disco (Puck) Ricordo</h3>
+                    <div class="p-3 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-sm text-white uppercase group-hover:text-varese-yellow transition-colors line-clamp-1">Disco Ricordo</h3>
                     </div>
                 </div>
 
-                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 100ms;">
+                <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:-translate-y-1.5 cursor-pointer reveal" style="transition-delay: 100ms;">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
-                        <i class="fas fa-mitten text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
-                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 12.00</span>
+                        <i class="fas fa-mitten text-5xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-110 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-[11px] font-bold px-2 py-1 rounded-full z-20 shadow-md transform group-hover:scale-105 transition-transform">€ 12.00</span>
                     </div>
-                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
-                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Sciarpa Torneo</h3>
+                    <div class="p-3 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-sm text-white uppercase group-hover:text-varese-yellow transition-colors line-clamp-1">Sciarpa Torneo</h3>
                     </div>
                 </div>
 
-                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 200ms;">
+                <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:-translate-y-1.5 cursor-pointer reveal" style="transition-delay: 200ms;">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
-                        <i class="fas fa-bottle-water text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
-                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 10.00</span>
+                        <i class="fas fa-bottle-water text-5xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-110 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-[11px] font-bold px-2 py-1 rounded-full z-20 shadow-md transform group-hover:scale-105 transition-transform">€ 10.00</span>
                     </div>
-                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
-                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Borraccia in Alluminio</h3>
+                    <div class="p-3 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-sm text-white uppercase group-hover:text-varese-yellow transition-colors line-clamp-1">Borraccia in Alluminio</h3>
                     </div>
                 </div>
 
-                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal">
+                <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:-translate-y-1.5 cursor-pointer reveal">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
-                        <i class="fas fa-key text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
-                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 5.00</span>
+                        <i class="fas fa-key text-5xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-110 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-[11px] font-bold px-2 py-1 rounded-full z-20 shadow-md transform group-hover:scale-105 transition-transform">€ 5.00</span>
                     </div>
-                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
-                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Portachiavi</h3>
+                    <div class="p-3 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-sm text-white uppercase group-hover:text-varese-yellow transition-colors line-clamp-1">Portachiavi</h3>
                     </div>
                 </div>
 
-                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 100ms;">
+                <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:-translate-y-1.5 cursor-pointer reveal" style="transition-delay: 100ms;">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
-                        <i class="fas fa-id-badge text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
-                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 3.00</span>
+                        <i class="fas fa-id-badge text-5xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-110 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-[11px] font-bold px-2 py-1 rounded-full z-20 shadow-md transform group-hover:scale-105 transition-transform">€ 3.00</span>
                     </div>
-                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
-                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Spilla Logo</h3>
+                    <div class="p-3 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-sm text-white uppercase group-hover:text-varese-yellow transition-colors line-clamp-1">Spilla Logo</h3>
                     </div>
                 </div>
 
-                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 200ms;">
+                <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:-translate-y-1.5 cursor-pointer reveal" style="transition-delay: 200ms;">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
-                        <i class="fas fa-socks text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
-                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 15.00</span>
+                        <i class="fas fa-socks text-5xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-110 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-[11px] font-bold px-2 py-1 rounded-full z-20 shadow-md transform group-hover:scale-105 transition-transform">€ 15.00</span>
                     </div>
-                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
-                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Calzettoni Gara (Replica)</h3>
+                    <div class="p-3 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-sm text-white uppercase group-hover:text-varese-yellow transition-colors line-clamp-1">Calzettoni (Replica)</h3>
                     </div>
                 </div>
 
-                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal">
+                <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:-translate-y-1.5 cursor-pointer reveal">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
-                        <i class="fas fa-mug-hot text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
-                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 10.00</span>
+                        <i class="fas fa-mug-hot text-5xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-110 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-[11px] font-bold px-2 py-1 rounded-full z-20 shadow-md transform group-hover:scale-105 transition-transform">€ 10.00</span>
                     </div>
-                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
-                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Tazza Ufficiale</h3>
+                    <div class="p-3 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-sm text-white uppercase group-hover:text-varese-yellow transition-colors line-clamp-1">Tazza Ufficiale</h3>
                     </div>
                 </div>
 
-                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 100ms;">
+                <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:-translate-y-1.5 cursor-pointer reveal" style="transition-delay: 100ms;">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
-                        <i class="fas fa-bag-shopping text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
-                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 12.00</span>
+                        <i class="fas fa-bag-shopping text-5xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-110 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-[11px] font-bold px-2 py-1 rounded-full z-20 shadow-md transform group-hover:scale-105 transition-transform">€ 12.00</span>
                     </div>
-                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
-                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Sacca Sportiva</h3>
+                    <div class="p-3 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-sm text-white uppercase group-hover:text-varese-yellow transition-colors line-clamp-1">Sacca Sportiva</h3>
                     </div>
                 </div>
 
-                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 200ms;">
+                <div class="bg-zinc-900 rounded-lg overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:-translate-y-1.5 cursor-pointer reveal" style="transition-delay: 200ms;">
                     <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
                         <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
-                        <i class="fas fa-flag text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
-                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 18.00</span>
+                        <i class="fas fa-flag text-5xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-110 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-[11px] font-bold px-2 py-1 rounded-full z-20 shadow-md transform group-hover:scale-105 transition-transform">€ 18.00</span>
                     </div>
-                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
-                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Bandiera Città di Varese</h3>
+                    <div class="p-3 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-sm text-white uppercase group-hover:text-varese-yellow transition-colors line-clamp-1">Bandiera Città</h3>
                     </div>
                 </div>
 
@@ -563,19 +563,25 @@
 
     <!-- SCRIPT -->
     <script>
-        // 1. Gestione del Menu Mobile
+        // 1. Gestione del Menu Mobile con animazione Smooth
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
 
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
+        function toggleMenu() {
+            if (menu.classList.contains('max-h-0')) {
+                menu.classList.remove('max-h-0', 'opacity-0');
+                menu.classList.add('max-h-96', 'opacity-100'); // Espande la tendina
+            } else {
+                menu.classList.add('max-h-0', 'opacity-0'); // Richiude la tendina
+                menu.classList.remove('max-h-96', 'opacity-100');
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
 
         const mobileLinks = menu.querySelectorAll('a');
         mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-            });
+            link.addEventListener('click', toggleMenu); // Chiude il menù con animazione quando si clicca un link
         });
 
         // 2. Navbar Dinamica e Pulsante Back to Top allo Scroll
@@ -608,7 +614,7 @@
             }
         });
 
-        // 3. Scroll Reveal Animation (Comparsa elementi)
+        // 3. Scroll Reveal Animation Perenne (Continua a funzionare sia su che giù)
         function reveal() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -618,6 +624,8 @@
 
                 if (elementTop < windowHeight - elementVisible) {
                     reveals[i].classList.add("active");
+                } else {
+                    reveals[i].classList.remove("active"); // <-- Rimuove la classe quando si esce dallo schermo, così si ripete!
                 }
             }
         }
