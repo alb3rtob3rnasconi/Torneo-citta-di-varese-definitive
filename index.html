@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth scroll-pt-16">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneo Under 12 - Città di Varese</title>
+    <!-- Favicon (Logo nella scheda del browser) -->
+    <link rel="icon" type="image/svg+xml" href="cittadivarese.svg">
+    <!-- Tailwind CSS per lo stile -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome per le icone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        varese: {
+                            yellow: '#FBBF24', // Giallo simile al logo
+                            dark: '#111111',   // Nero/Sfondo scuro
+                            light: '#FAFAFA'   // Testo chiaro
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Impact', 'Arial Black', 'sans-serif'],
+                        vehicle: ['"Vehicle JNL"', 'sans-serif'] // Aggiunta font Vehicle JNL
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Definizione Font Personalizzato Vehicle JNL (assicurateVi di avere il file o averlo installato) */
+        @font-face {
+            font-family: 'Vehicle JNL';
+            src: local('Vehicle JNL Regular'), local('Vehicle-JNL-Regular');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* Stile personalizzato per la barra di scorrimento */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #111111; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FBBF24; 
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d9a01c; 
+        }
+
+        /* Puntatori del mouse a tema */
+        body {
+            /* Freccia gialla e nera */
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M4 4l18 7-9 3 5 8-3 2-5-8-6 5z' fill='%23FBBF24' stroke='%23111111' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E"), auto;
+        }
+        a, button, [role="button"], [onclick], .cursor-pointer {
+            /* Manina gialla e nera per i link, con punto caldo spostato */
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M11 2c-1.7 0-3 1.3-3 3v6.2A4 4 0 0 0 5 15v5c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-5a4 4 0 0 0-2-3.8V8c0-1.7-1.3-3-3-3-.3 0-.6.1-.8.1A3 3 0 0 0 11 2zm0 2c.6 0 1 .4 1 1v6h-2V5c0-.6.4-1 1-1zm4 3c.6 0 1 .4 1 1v3h-2V8c0-.6.4-1 1-1zM9 13v2H7v-2h2zm8 0v2h-2v-2h2z' fill='%23FBBF24' stroke='%23111111' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 10 2, pointer !important;
+        }
+
+        /* Classi per l'animazione di comparsa (Reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Transizione fluida per la navbar */
+        #navbar {
+            transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+    </style>
+</head>
+<body class="bg-varese-dark text-white font-sans antialiased overflow-x-hidden">
+
+    <!-- Navbar Fissa Dinamica -->
+    <nav id="navbar" class="fixed w-full bg-transparent border-b border-transparent z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 transition-all duration-300" id="navbar-content">
+                <!-- Logo e Titolo nella Navbar -->
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <img src="cittadivarese.svg" alt="Logo Torneo" class="h-12 w-auto drop-shadow-md transition-transform duration-300 hover:scale-105">
+                    <span class="font-heading text-varese-yellow text-xl tracking-wider hidden sm:block drop-shadow-md">TORNEO CITTÀ DI VARESE U12</span>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-6 font-vehicle font-bold uppercase">
+                        <a href="#eventi" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Programma</a>
+                        <a href="#risultati" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Risultati</a>
+                        <a href="#menu-pasti" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Menù</a>
+                        <a href="#merchandising" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Shop</a>
+                        <a href="#foto" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Foto</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-varese-yellow hover:text-white focus:outline-none transition-transform active:scale-95">
+                        <i class="fas fa-bars text-3xl drop-shadow-md"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-md border-b border-varese-yellow/20 font-vehicle font-bold uppercase transition-all duration-300 origin-top">
+            <div class="px-2 pt-2 pb-6 space-y-2 sm:px-3 text-center">
+                <a href="#eventi" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Programma</a>
+                <a href="#risultati" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Risultati</a>
+                <a href="#menu-pasti" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Menù</a>
+                <a href="#merchandising" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Shop</a>
+                <a href="#foto" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Foto</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Home Page -->
+    <header id="home" class="pt-24 pb-12 flex flex-col items-center justify-center min-h-screen relative overflow-hidden">
+        
+        <!-- Sfondo Fotografico con Filtro Scuro e leggero effetto zoom iniziale -->
+        <div class="absolute inset-0 z-0 animate-[scaleIn_10s_ease-out_forwards]">
+            <style>
+                @keyframes scaleIn {
+                    0% { transform: scale(1.1); }
+                    100% { transform: scale(1); }
+                }
+            </style>
+            <img src="DSC00190.jpg" alt="Squadra Varese U12" class="w-full h-full object-cover object-center">
+            <!-- Filtro nero al 75% per far leggere bene i testi -->
+            <div class="absolute inset-0 bg-black/75"></div> 
+        </div>
+
+        <!-- Effetti Luce Decorativi -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20 pointer-events-none mix-blend-screen">
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-varese-yellow rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-10 -right-10 w-64 h-64 bg-varese-yellow rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        </div>
+
+        <!-- Contenuto in Primo Piano -->
+        <div class="z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center relative">
+            
+            <!-- CONTENITORE LOGO SVG PRINCIPALE -->
+            <img src="cittadivarese.svg" alt="cittadivarese" class="w-full max-w-lg mx-auto drop-shadow-[0_0_20px_rgba(251,191,36,0.6)] mb-8 rounded-xl transition-transform duration-700 hover:scale-105 hover:drop-shadow-[0_0_30px_rgba(251,191,36,0.8)]">
+            
+            <h1 class="text-4xl md:text-5xl font-heading text-white mb-4 uppercase tracking-wide drop-shadow-lg reveal active">
+                Benvenuti al Torneo
+            </h1>
+            <p class="text-xl text-gray-200 mb-10 max-w-2xl drop-shadow-md reveal active" style="transition-delay: 200ms;">
+                28-29 Marzo 2026 - Il grande hockey su ghiaccio giovanile nella Città di Varese.
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center reveal active" style="transition-delay: 400ms;">
+                
+                <!-- Bottoni super dinamici -->
+                <a href="#eventi" class="group relative bg-varese-yellow text-black font-bold py-3 px-8 rounded-full transition-all duration-300 hover:-translate-y-1 hover:scale-105 shadow-[0_0_15px_rgba(251,191,36,0.4)] hover:shadow-[0_0_25px_rgba(251,191,36,0.9)] overflow-hidden">
+                    <span class="absolute inset-0 w-full h-full bg-white/30 transform -skew-x-12 -translate-x-full group-hover:animate-[shine_0.8s_ease]"></span>
+                    <style>
+                        @keyframes shine {
+                            100% { transform: translateX(200%) skewX(-12deg); }
+                        }
+                    </style>
+                    <i class="fas fa-calendar-alt mr-2 relative z-10 group-hover:animate-bounce"></i> 
+                    <span class="relative z-10">Programma Eventi</span>
+                </a>
+                
+                <a href="#risultati" class="group border-2 border-varese-yellow text-varese-yellow font-bold py-3 px-8 rounded-full transition-all duration-300 hover:bg-varese-yellow hover:text-black hover:-translate-y-1 hover:scale-105 backdrop-blur-sm bg-black/30 hover:shadow-[0_0_20px_rgba(251,191,36,0.5)]">
+                    <i class="fas fa-trophy mr-2 group-hover:rotate-12 transition-transform"></i> Segui i Risultati
+                </a>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- 1. Calendario Eventi del Torneo -->
+    <section id="eventi" class="py-20 bg-black border-y border-varese-yellow/10 overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-heading text-varese-yellow mb-2 uppercase">Programma Eventi</h2>
+                <div class="w-24 h-1 bg-varese-yellow mx-auto rounded transition-all duration-500 hover:w-32"></div>
+                <p class="mt-4 text-gray-400">Il palinsesto delle giornate del torneo.</p>
+            </div>
+
+            <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-varese-yellow before:to-transparent">
+                
+                <!-- Evento 1 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active reveal">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-black group-hover:bg-varese-yellow text-varese-yellow group-hover:text-black transition-all duration-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10 group-hover:scale-110">
+                        <i class="fas fa-door-open font-bold"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-zinc-900 p-6 rounded-xl border border-zinc-800 transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:-translate-y-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-varese-yellow">Sabato 28 Marzo</span>
+                            <span class="text-xs font-medium text-gray-400 bg-black px-2 py-1 rounded">08:00</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-1 text-white group-hover:text-varese-yellow transition-colors">Apertura Impianto</h3>
+                        <p class="text-gray-400 text-sm">Registrazione dei team partecipanti, assegnazione spogliatoi e riscaldamento libero sul ghiaccio.</p>
+                    </div>
+                </div>
+
+                <!-- Evento 2 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active reveal" style="transition-delay: 100ms;">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-black group-hover:bg-varese-yellow text-varese-yellow group-hover:text-black transition-all duration-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10 group-hover:scale-110">
+                        <i class="fas fa-hockey-puck font-bold"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-zinc-900 p-6 rounded-xl border border-zinc-800 transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:-translate-y-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-varese-yellow">Sabato 28 Marzo</span>
+                            <span class="text-xs font-medium text-gray-400 bg-black px-2 py-1 rounded">09:30</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-1 text-white group-hover:text-varese-yellow transition-colors">Inizio Fase a Gironi</h3>
+                        <p class="text-gray-400 text-sm">Fischio d'inizio per le prime partite di qualificazione del torneo. Servizio ristoro aperto in contemporanea.</p>
+                    </div>
+                </div>
+
+                <!-- Evento 3 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active reveal" style="transition-delay: 200ms;">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-black group-hover:bg-varese-yellow text-varese-yellow group-hover:text-black transition-all duration-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10 group-hover:scale-110">
+                        <i class="fas fa-star font-bold"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-zinc-900 p-6 rounded-xl border border-zinc-800 transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:-translate-y-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-varese-yellow">Sabato 28 Marzo</span>
+                            <span class="text-xs font-medium text-gray-400 bg-black px-2 py-1 rounded">18:00</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-1 text-white group-hover:text-varese-yellow transition-colors">Cerimonia Ufficiale</h3>
+                        <p class="text-gray-400 text-sm">Tutte le squadre in pista per il saluto delle autorità e la foto di gruppo sul ghiaccio.</p>
+                    </div>
+                </div>
+
+                <!-- Evento 4 -->
+                <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active reveal" style="transition-delay: 300ms;">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white bg-black group-hover:bg-varese-yellow text-varese-yellow group-hover:text-black transition-all duration-300 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 relative z-10 group-hover:scale-110">
+                        <i class="fas fa-trophy font-bold"></i>
+                    </div>
+                    <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-zinc-900 p-6 rounded-xl border border-zinc-800 transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_15px_rgba(251,191,36,0.15)] hover:-translate-y-1">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="font-bold text-varese-yellow">Domenica 29 Marzo</span>
+                            <span class="text-xs font-medium text-gray-400 bg-black px-2 py-1 rounded">09:00</span>
+                        </div>
+                        <h3 class="font-bold text-lg mb-1 text-white group-hover:text-varese-yellow transition-colors">Fasi Finali e Premiazioni</h3>
+                        <p class="text-gray-400 text-sm">Partite ad eliminazione diretta, finali dal 1° all'ultimo posto e premiazioni previste per le ore 16:30.</p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <p class="text-center text-sm text-gray-500 mt-10 italic reveal">
+                Gli orari potrebbero subire lievi variazioni in base all'andamento delle partite.
+            </p>
+        </div>
+    </section>
+
+    <!-- 2. Sezione Risultati (Preview Tournify) -->
+    <section id="risultati" class="py-20 bg-black/50 overflow-hidden">
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-heading text-varese-yellow mb-2 uppercase">Risultati Live</h2>
+                <div class="w-24 h-1 bg-varese-yellow mx-auto rounded transition-all duration-500 hover:w-32"></div>
+                <p class="mt-4 text-gray-400">Segui l'andamento del torneo in tempo reale tramite Tournify.</p>
+            </div>
+
+            <!-- Preview Card Tournify -->
+            <div class="bg-zinc-900 border border-varese-yellow/30 rounded-2xl overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(251,191,36,0.2)] transition-shadow duration-500 relative group reveal">
+                <div class="absolute inset-0 bg-black/70 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 backdrop-blur-sm">
+                    <a href="https://tournifyapp.com/live/cittadivarese" target="_blank" class="bg-varese-yellow text-black font-bold py-4 px-10 rounded-full text-lg hover:bg-yellow-400 transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-[0_0_15px_rgba(251,191,36,0.5)]">
+                        <i class="fas fa-external-link-alt mr-2"></i> Apri su Tournify
+                    </a>
+                </div>
+                <div class="p-6 bg-zinc-800 border-b border-zinc-700 flex justify-between items-center group-hover:bg-zinc-700 transition-colors duration-300">
+                    <div class="flex items-center space-x-3">
+                        <i class="fas fa-mobile-alt text-varese-yellow text-2xl group-hover:animate-bounce"></i>
+                        <h3 class="font-bold text-xl text-white">App Tournify</h3>
+                    </div>
+                    <span class="bg-green-500 text-black text-xs font-bold px-2 py-1 rounded uppercase animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]">Live</span>
+                </div>
+                
+                <!-- Mockup Preview/Iframe container -->
+                <div class="relative h-96 w-full bg-zinc-950 flex flex-col items-center justify-center p-8 text-center group-hover:scale-[1.02] transition-transform duration-700">
+                    <i class="fas fa-list-ol text-6xl text-varese-yellow/30 mb-6 group-hover:text-varese-yellow/60 transition-colors"></i>
+                    <h4 class="text-2xl font-heading text-white mb-2">Classifiche e Partite</h4>
+                    <p class="text-gray-400 mb-6 max-w-md">Clicca qui per accedere alla piattaforma ufficiale con il tabellone completo, gli orari e i punteggi aggiornati del Torneo Città di Varese U12.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Sezione Menù Pasti -->
+    <section id="menu-pasti" class="py-20 border-t border-varese-yellow/10 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-heading text-varese-yellow mb-2 uppercase">Menù Food & Beverage</h2>
+                <div class="w-24 h-1 bg-varese-yellow mx-auto rounded transition-all duration-500 hover:w-32"></div>
+                <p class="mt-4 text-gray-400">Ricarica le energie presso il nostro punto ristoro.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Cibo -->
+                <div class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800 shadow-lg reveal transition-all duration-300 hover:border-varese-yellow/50 hover:-translate-y-2">
+                    <div class="flex items-center mb-6 text-varese-yellow">
+                        <i class="fas fa-hamburger text-3xl mr-4 animate-bounce" style="animation-duration: 2s;"></i>
+                        <h3 class="text-2xl font-bold font-heading text-white">Griglia & Cucina</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between items-center border-b border-zinc-800 pb-2 hover:bg-zinc-800/50 p-2 rounded transition-colors cursor-pointer">
+                            <div>
+                                <h4 class="font-bold text-white text-lg">Salamella</h4>
+                                <p class="text-sm text-gray-400">Panino con salamella alla griglia</p>
+                            </div>
+                            <span class="text-varese-yellow font-bold text-xl">€ 5.00</span>
+                        </li>
+                        <li class="flex justify-between items-center border-b border-zinc-800 pb-2 hover:bg-zinc-800/50 p-2 rounded transition-colors cursor-pointer">
+                            <div>
+                                <h4 class="font-bold text-white text-lg">Hamburger</h4>
+                                <p class="text-sm text-gray-400">Hamburger di manzo con salse</p>
+                            </div>
+                            <span class="text-varese-yellow font-bold text-xl">€ 6.00</span>
+                        </li>
+                        <li class="flex justify-between items-center border-b border-zinc-800 pb-2 hover:bg-zinc-800/50 p-2 rounded transition-colors cursor-pointer">
+                            <div>
+                                <h4 class="font-bold text-white text-lg">Hot Dog</h4>
+                                <p class="text-sm text-gray-400">Classico wurstel e salse</p>
+                            </div>
+                            <span class="text-varese-yellow font-bold text-xl">€ 4.00</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-2 hover:bg-zinc-800/50 p-2 rounded transition-colors cursor-pointer">
+                            <div>
+                                <h4 class="font-bold text-white text-lg">Patatine Fritte</h4>
+                                <p class="text-sm text-gray-400">Porzione abbondante</p>
+                            </div>
+                            <span class="text-varese-yellow font-bold text-xl">€ 3.50</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Bevande -->
+                <div class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800 shadow-lg reveal transition-all duration-300 hover:border-varese-yellow/50 hover:-translate-y-2" style="transition-delay: 200ms;">
+                    <div class="flex items-center mb-6 text-varese-yellow">
+                        <i class="fas fa-beer text-3xl mr-4 hover:rotate-12 transition-transform"></i>
+                        <h3 class="text-2xl font-bold font-heading text-white">Bevande</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between items-center border-b border-zinc-800 pb-2 hover:bg-zinc-800/50 p-2 rounded transition-colors cursor-pointer">
+                            <div>
+                                <h4 class="font-bold text-white text-lg">Acqua</h4>
+                                <p class="text-sm text-gray-400">Naturale o Frizzante (0.5L)</p>
+                            </div>
+                            <span class="text-varese-yellow font-bold text-xl">€ 1.50</span>
+                        </li>
+                        <li class="flex justify-between items-center border-b border-zinc-800 pb-2 hover:bg-zinc-800/50 p-2 rounded transition-colors cursor-pointer">
+                            <div>
+                                <h4 class="font-bold text-white text-lg">Bibite in Lattina</h4>
+                                <p class="text-sm text-gray-400">Coca Cola, Fanta, Sprite, Estathè</p>
+                            </div>
+                            <span class="text-varese-yellow font-bold text-xl">€ 2.50</span>
+                        </li>
+                        <li class="flex justify-between items-center border-b border-zinc-800 pb-2 hover:bg-zinc-800/50 p-2 rounded transition-colors cursor-pointer">
+                            <div>
+                                <h4 class="font-bold text-white text-lg">Birra alla Spina</h4>
+                                <p class="text-sm text-gray-400">Bionda media (0.4L)</p>
+                            </div>
+                            <span class="text-varese-yellow font-bold text-xl">€ 4.50</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-2 hover:bg-zinc-800/50 p-2 rounded transition-colors cursor-pointer">
+                            <div>
+                                <h4 class="font-bold text-white text-lg">Caffè</h4>
+                                <p class="text-sm text-gray-400">Espresso</p>
+                            </div>
+                            <span class="text-varese-yellow font-bold text-xl">€ 1.50</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Sezione Merchandising -->
+    <section id="merchandising" class="py-20 bg-zinc-950 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-heading text-varese-yellow mb-2 uppercase">Merchandising Ufficiale</h2>
+                <div class="w-24 h-1 bg-varese-yellow mx-auto rounded transition-all duration-500 hover:w-32"></div>
+                <p class="mt-4 text-gray-400">Porta a casa un ricordo del Torneo. Acquistabili presso lo stand al palaghiaccio.</p>
+            </div>
+
+            <!-- Griglia CSS: su mobile 1 colonna, tablet 2, desktop 3. Totale 12 elementi -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal">
+                    <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <i class="fas fa-tshirt text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 20.00</span>
+                    </div>
+                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">T-Shirt Torneo</h3>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 100ms;">
+                    <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <i class="fas fa-tshirt text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 35.00</span>
+                    </div>
+                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Felpa con Cappuccio</h3>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 200ms;">
+                    <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <i class="fas fa-hat-cowboy text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 15.00</span>
+                    </div>
+                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Cappellino Ufficiale</h3>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal">
+                    <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <i class="fas fa-hockey-puck text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 8.00</span>
+                    </div>
+                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Disco (Puck) Ricordo</h3>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 100ms;">
+                    <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <i class="fas fa-mitten text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 12.00</span>
+                    </div>
+                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Sciarpa Torneo</h3>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 200ms;">
+                    <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <i class="fas fa-bottle-water text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 10.00</span>
+                    </div>
+                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Borraccia in Alluminio</h3>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal">
+                    <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <i class="fas fa-key text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 5.00</span>
+                    </div>
+                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Portachiavi</h3>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 100ms;">
+                    <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <i class="fas fa-id-badge text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 3.00</span>
+                    </div>
+                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Spilla Logo</h3>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 200ms;">
+                    <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <i class="fas fa-socks text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 15.00</span>
+                    </div>
+                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Calzettoni Gara (Replica)</h3>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal">
+                    <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <i class="fas fa-mug-hot text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 10.00</span>
+                    </div>
+                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Tazza Ufficiale</h3>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 100ms;">
+                    <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <i class="fas fa-bag-shopping text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 12.00</span>
+                    </div>
+                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Sacca Sportiva</h3>
+                    </div>
+                </div>
+
+                <div class="bg-zinc-900 rounded-xl overflow-hidden border border-zinc-800 group transition-all duration-300 hover:border-varese-yellow hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] hover:-translate-y-2 cursor-pointer reveal" style="transition-delay: 200ms;">
+                    <div class="aspect-square bg-zinc-800 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <i class="fas fa-flag text-6xl text-zinc-600 group-hover:text-varese-yellow group-hover:scale-125 transition-all duration-500"></i>
+                        <span class="absolute bottom-2 right-2 bg-varese-yellow text-black text-xs font-bold px-3 py-1.5 rounded-full z-20 shadow-lg transform group-hover:scale-110 transition-transform">€ 18.00</span>
+                    </div>
+                    <div class="p-4 text-center group-hover:bg-zinc-800 transition-colors duration-300">
+                        <h3 class="font-bold text-lg text-white uppercase group-hover:text-varese-yellow transition-colors">Bandiera Città di Varese</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Sezione Foto e Footer -->
+    <footer id="foto" class="bg-zinc-950 pt-16 pb-8 border-t border-varese-yellow/20 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+            
+            <!-- Link alle Foto -->
+            <div class="mb-16 bg-zinc-900 border border-zinc-800 p-10 rounded-2xl shadow-xl reveal transition-all duration-500 hover:shadow-[0_0_30px_rgba(251,191,36,0.15)] hover:border-varese-yellow/50">
+                <i class="fas fa-camera-retro text-6xl text-varese-yellow mb-6 drop-shadow-md"></i>
+                <h2 class="text-3xl font-heading uppercase mb-3 text-white">Galleria Fotografica</h2>
+                <p class="text-gray-400 mb-8 text-lg">Guarda, scarica e condividi i momenti più belli del Torneo Città di Varese U12.</p>
+                <!-- Sostituire l'href con il link reale alle foto -->
+                <a href="#" class="inline-block bg-white text-black font-bold py-4 px-10 rounded-full hover:bg-varese-yellow hover:-translate-y-1 hover:scale-105 transition-all duration-300 shadow-lg shadow-white/10 hover:shadow-[0_0_20px_rgba(251,191,36,0.6)]">
+                    <i class="fas fa-images mr-2"></i> Vai all'Album Fotografico
+                </a>
+            </div>
+
+            <img src="cittadivarese.svg" alt="Logo Piccolo" class="w-32 mx-auto mb-6 opacity-80 drop-shadow-md reveal" style="transition-delay: 200ms;">
+            
+            <p class="text-gray-500 mb-6 text-sm reveal" style="transition-delay: 300ms;">
+                &copy; 2026 Torneo U12 Città di Varese. Tutti i diritti riservati.<br>
+                Hockey Club Varese 1977 S.C.S.D.
+            </p>
+
+        </div>
+    </footer>
+
+    <!-- Pulsante Fluttuante Torna Su -->
+    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 group flex items-center justify-center w-14 h-14 bg-varese-yellow text-black rounded-full hover:bg-white hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(251,191,36,0.6)] hover:shadow-[0_0_25px_rgba(255,255,255,0.8)] opacity-0 invisible translate-y-5">
+        <i class="fas fa-arrow-up text-xl transition-transform duration-300 group-hover:-translate-y-1"></i>
+    </button>
+
+    <!-- SCRIPT -->
+    <script>
+        // 1. Gestione del Menu Mobile
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // 2. Navbar Dinamica e Pulsante Back to Top allo Scroll
+        const navbar = document.getElementById('navbar');
+        const navbarContent = document.getElementById('navbar-content');
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                // Utente ha scrollato verso il basso
+                navbar.classList.remove('bg-transparent', 'border-transparent');
+                navbar.classList.add('bg-black/95', 'backdrop-blur-md', 'border-varese-yellow/20', 'shadow-lg');
+                navbarContent.classList.remove('h-20');
+                navbarContent.classList.add('h-16'); // Rimpicciolisce leggermente la navbar
+            } else {
+                // Utente è in cima alla pagina
+                navbar.classList.add('bg-transparent', 'border-transparent');
+                navbar.classList.remove('bg-black/95', 'backdrop-blur-md', 'border-varese-yellow/20', 'shadow-lg');
+                navbarContent.classList.remove('h-16');
+                navbarContent.classList.add('h-20'); // Riporta la navbar alla grandezza originale
+            }
+
+            // Mostra o nasconde il bottone fluttuante "Torna su"
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-5');
+                backToTopBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-5');
+                backToTopBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            }
+        });
+
+        // 3. Scroll Reveal Animation (Comparsa elementi)
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // Quanto deve entrare nello schermo prima di apparire
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Richiamo subito per far apparire gli elementi che sono già visibili al caricamento
+        reveal();
+    </script>
+</body>
+</html>
