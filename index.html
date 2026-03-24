@@ -106,7 +106,6 @@
                     <a href="#risultati" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Risultati</a>
                     <a href="#menu-pasti" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Menù</a>
                     <a href="#merchandising" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Shop</a>
-                    <a href="#foto" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Foto</a>
                 </div>
                 
                 <!-- Mobile menu button a destra -->
@@ -124,7 +123,6 @@
                 <a href="#risultati" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Risultati</a>
                 <a href="#menu-pasti" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Menù</a>
                 <a href="#merchandising" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Shop</a>
-                <a href="#foto" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Foto</a>
             </div>
         </div>
     </nav>
@@ -347,9 +345,9 @@
                 </div>
 
                 <!-- Bevande -->
-                <div class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800 shadow-lg reveal transition-all duration-300 hover:border-varese-yellow/50 hover:-translate-y-2">
+                <div class="bg-zinc-900 p-8 rounded-2xl border border-zinc-800 shadow-lg reveal transition-all duration-300 hover:border-varese-yellow/50 hover:-translate-y-2" style="transition-delay: 200ms;">
                     <div class="flex items-center mb-6 text-varese-yellow">
-                        <i class="fas fa-beer text-3xl mr-4 hover:rotate-12 transition-transform"></i>
+                        <i class="fas fa-beer text-3xl mr-4 animate-bounce" style="animation-duration: 2s;"></i>
                         <h3 class="text-2xl font-bold font-heading text-white">Bevande</h3>
                     </div>
                     <ul class="space-y-4">
@@ -535,9 +533,11 @@
         </div>
     </section>
 
-    <!-- 5. Sezione Foto e Footer (Modificata visibilità finale) -->
-    <footer id="foto" class="bg-zinc-950 pt-16 pb-16 border-t border-varese-yellow/20 relative overflow-hidden">
-            <!-- RIMOSSA CLASSE REVEAL DA QUI IN GIÙ: elementi sempre visibili al 100% -->
+    <!-- 5. Footer Principale -->
+    <footer class="bg-zinc-950 pt-16 pb-16 border-t border-varese-yellow/20 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+
+            <!-- Logo Piccolo -->
             <img src="cittadivarese.svg" alt="Logo Piccolo" class="w-32 mx-auto mb-6 opacity-80 drop-shadow-md">
             
             <!-- TESTO COPYRIGHT MODIFICATO: BIANCO E PICCOLO -->
