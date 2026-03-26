@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth scroll-pt-16">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info Squadre - Torneo Under 12 Varese</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="cittadivarese.svg">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        varese: {
+                            yellow: '#FBBF24',
+                            dark: '#111111',
+                            light: '#FAFAFA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Impact', 'Arial Black', 'sans-serif'],
+                        vehicle: ['"Vehicle JNL"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face {
+            font-family: 'Vehicle JNL';
+            src: local('Vehicle JNL Regular'), local('Vehicle-JNL-Regular');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #111111; }
+        ::-webkit-scrollbar-thumb { background: #FBBF24; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #d9a01c; }
+
+        body {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M4 4l18 7-9 3 5 8-3 2-5-8-6 5z' fill='%23FBBF24' stroke='%23111111' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E"), auto;
+        }
+        a, button, [role="button"], [onclick], .cursor-pointer {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M11 2c-1.7 0-3 1.3-3 3v6.2A4 4 0 0 0 5 15v5c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-5a4 4 0 0 0-2-3.8V8c0-1.7-1.3-3-3-3-.3 0-.6.1-.8.1A3 3 0 0 0 11 2zm0 2c.6 0 1 .4 1 1v6h-2V5c0-.6.4-1 1-1zm4 3c.6 0 1 .4 1 1v3h-2V8c0-.6.4-1 1-1zM9 13v2H7v-2h2zm8 0v2h-2v-2h2z' fill='%23FBBF24' stroke='%23111111' stroke-width='1.5' stroke-linejoin='round'/%3E%3C/svg%3E") 10 2, pointer !important;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        #navbar {
+            transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+    </style>
+</head>
+<body class="bg-varese-dark text-white font-sans antialiased overflow-x-hidden">
+
+    <!-- Navbar Fissa Dinamica -->
+    <nav id="navbar" class="fixed w-full bg-black/95 backdrop-blur-md border-b border-varese-yellow/20 shadow-lg z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 transition-all duration-300 w-full" id="navbar-content">
+                
+                <!-- Logo a sinistra che riporta alla Home -->
+                <div class="flex-shrink-0 cursor-pointer z-20">
+                    <a href="index.html">
+                        <img src="cittadivarese.svg" alt="Logo Torneo" class="h-10 w-auto drop-shadow-md transition-transform duration-300 hover:scale-105">
+                    </a>
+                </div>
+                
+                <!-- Titolo Centrale -->
+                <div class="flex-1 text-center px-2 flex flex-col justify-center z-10">
+                    <span class="font-heading text-white text-[10px] sm:text-xs md:text-sm tracking-widest uppercase opacity-90 drop-shadow-md">Torneo Under 12</span>
+                    <span class="font-heading text-varese-yellow text-sm sm:text-lg md:text-xl tracking-wider uppercase drop-shadow-md">Info Squadre</span>
+                </div>
+                
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex flex-shrink-0 z-20 ml-4 items-baseline space-x-6 font-vehicle font-bold uppercase">
+                    <a href="index.html" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md"><i class="fas fa-home mr-1"></i> Home</a>
+                    <a href="#pasti" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Orari Pasti</a>
+                    <a href="#spogliatoi" class="text-white hover:text-varese-yellow hover:-translate-y-0.5 transition-all px-3 py-2 rounded-md text-lg drop-shadow-md">Spogliatoi</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex flex-shrink-0 items-center z-20">
+                    <button id="mobile-menu-btn" class="text-varese-yellow hover:text-white focus:outline-none transition-transform active:scale-95">
+                        <i class="fas fa-bars text-3xl drop-shadow-md"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden bg-black/95 backdrop-blur-md border-b border-varese-yellow/20 font-vehicle font-bold uppercase transition-all duration-500 ease-in-out max-h-0 overflow-hidden opacity-0 origin-top">
+            <div class="px-2 pt-2 pb-6 space-y-2 sm:px-3 text-center">
+                <a href="index.html" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors"><i class="fas fa-home mr-1"></i> Home Principale</a>
+                <a href="#pasti" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Calendario Pasti</a>
+                <a href="#spogliatoi" class="block text-white hover:text-black hover:bg-varese-yellow px-3 py-3 rounded-md text-base transition-colors">Lista Spogliatoi</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Interno -->
+    <header class="pt-32 pb-16 bg-zinc-950 border-b border-varese-yellow/20 relative overflow-hidden">
+        <!-- Effetti Luce -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-10 pointer-events-none mix-blend-screen">
+            <div class="absolute -top-24 -left-24 w-96 h-96 bg-varese-yellow rounded-full blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-10 right-20 w-64 h-64 bg-varese-yellow rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+        </div>
+
+        <div class="z-10 text-center px-4 max-w-4xl mx-auto relative reveal">
+            <i class="fas fa-users-cog text-6xl text-varese-yellow mb-6 drop-shadow-lg"></i>
+            <h1 class="text-4xl md:text-5xl font-heading text-white mb-4 uppercase tracking-wide drop-shadow-lg">
+                Dettagli Organizzativi
+            </h1>
+            <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+                In questa pagina troverete la pianificazione degli orari per il servizio ristorazione dedicato agli atleti e l'assegnazione ufficiale degli spogliatoi.
+            </p>
+        </div>
+    </header>
+
+    <!-- 1. Sezione Calendario Pasti -->
+    <section id="pasti" class="py-20 bg-black overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-heading text-varese-yellow mb-2 uppercase"><i class="fas fa-utensils mr-3"></i>Calendario Pasti</h2>
+                <div class="w-24 h-1 bg-varese-yellow mx-auto rounded transition-all duration-500 hover:w-32"></div>
+                <p class="mt-4 text-gray-400">Pianificazione degli accessi al ristorante per le squadre.</p>
+            </div>
+
+            <!-- Griglia Giornate -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                
+                <!-- Sabato -->
+                <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl reveal transition-all duration-300 hover:border-varese-yellow/50">
+                    <div class="bg-varese-yellow text-black text-center py-4 font-bold uppercase tracking-wider text-xl font-heading">
+                        Sabato 28 Marzo
+                    </div>
+                    <div class="p-0 overflow-x-auto">
+                        <table class="w-full text-left border-collapse whitespace-nowrap">
+                            <thead>
+                                <tr class="bg-zinc-950 text-gray-400 text-sm uppercase">
+                                    <th class="px-6 py-4 font-medium border-b border-zinc-800">Squadra</th>
+                                    <th class="px-6 py-4 font-medium border-b border-zinc-800"><i class="fas fa-sun mr-2 text-varese-yellow"></i>Pranzo</th>
+                                    <th class="px-6 py-4 font-medium border-b border-zinc-800"><i class="fas fa-moon mr-2 text-varese-yellow"></i>Cena</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-200">
+                                <!-- Dati Placeholder in attesa dell'Excel -->
+                                <tr class="border-b border-zinc-800/50 hover:bg-zinc-800/50 transition-colors">
+                                    <td class="px-6 py-4 font-bold text-white">HC Varese</td>
+                                    <td class="px-6 py-4"><span class="bg-black px-3 py-1 rounded text-varese-yellow font-bold">11:30</span></td>
+                                    <td class="px-6 py-4"><span class="bg-black px-3 py-1 rounded text-varese-yellow font-bold">19:00</span></td>
+                                </tr>
+                                <tr class="border-b border-zinc-800/50 hover:bg-zinc-800/50 transition-colors">
+                                    <td class="px-6 py-4 font-bold text-white">HC Milano Bears</td>
+                                    <td class="px-6 py-4"><span class="bg-black px-3 py-1 rounded text-varese-yellow font-bold">12:00</span></td>
+                                    <td class="px-6 py-4"><span class="bg-black px-3 py-1 rounded text-varese-yellow font-bold">19:30</span></td>
+                                </tr>
+                                <tr class="border-b border-zinc-800/50 hover:bg-zinc-800/50 transition-colors">
+                                    <td class="px-6 py-4 font-bold text-white">Como Nuoto</td>
+                                    <td class="px-6 py-4"><span class="bg-black px-3 py-1 rounded text-varese-yellow font-bold">12:30</span></td>
+                                    <td class="px-6 py-4"><span class="bg-black px-3 py-1 rounded text-varese-yellow font-bold">20:00</span></td>
+                                </tr>
+                                <tr class="hover:bg-zinc-800/50 transition-colors">
+                                    <td class="px-6 py-4 font-bold text-white">Real Torino</td>
+                                    <td class="px-6 py-4"><span class="bg-black px-3 py-1 rounded text-varese-yellow font-bold">13:00</span></td>
+                                    <td class="px-6 py-4"><span class="bg-black px-3 py-1 rounded text-varese-yellow font-bold">20:30</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Domenica -->
+                <div class="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden shadow-xl reveal transition-all duration-300 hover:border-varese-yellow/50" style="transition-delay: 150ms;">
+                    <div class="bg-varese-yellow text-black text-center py-4 font-bold uppercase tracking-wider text-xl font-heading">
+                        Domenica 29 Marzo
+                    </div>
+                    <div class="p-0 overflow-x-auto">
+                        <table class="w-full text-left border-collapse whitespace-nowrap">
+                            <thead>
+                                <tr class="bg-zinc-950 text-gray-400 text-sm uppercase">
+                                    <th class="px-6 py-4 font-medium border-b border-zinc-800">Squadra</th>
+                                    <th class="px-6 py-4 font-medium border-b border-zinc-800"><i class="fas fa-sun mr-2 text-varese-yellow"></i>Pranzo</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-200">
+                                <!-- Dati Placeholder in attesa dell'Excel -->
+                                <tr class="border-b border-zinc-800/50 hover:bg-zinc-800/50 transition-colors">
+                                    <td class="px-6 py-4 font-bold text-white">HC Varese</td>
+                                    <td class="px-6 py-4"><span class="bg-black px-3 py-1 rounded text-varese-yellow font-bold">11:30</span></td>
+                                </tr>
+                                <tr class="border-b border-zinc-800/50 hover:bg-zinc-800/50 transition-colors">
+                                    <td class="px-6 py-4 font-bold text-white">HC Milano Bears</td>
+                                    <td class="px-6 py-4"><span class="bg-black px-3 py-1 rounded text-varese-yellow font-bold">12:00</span></td>
+                                </tr>
+                                <tr class="border-b border-zinc-800/50 hover:bg-zinc-800/50 transition-colors">
+                                    <td class="px-6 py-4 font-bold text-white">Como Nuoto</td>
+                                    <td class="px-6 py-4"><span class="bg-black px-3 py-1 rounded text-varese-yellow font-bold">12:30</span></td>
+                                </tr>
+                                <tr class="hover:bg-zinc-800/50 transition-colors">
+                                    <td class="px-6 py-4 font-bold text-white">Real Torino</td>
+                                    <td class="px-6 py-4"><span class="bg-black px-3 py-1 rounded text-varese-yellow font-bold">13:00</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Sezione Lista Spogliatoi -->
+    <section id="spogliatoi" class="py-20 bg-zinc-950 border-t border-varese-yellow/10 overflow-hidden">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-heading text-varese-yellow mb-2 uppercase"><i class="fas fa-door-closed mr-3"></i>Assegnazione Spogliatoi</h2>
+                <div class="w-24 h-1 bg-varese-yellow mx-auto rounded transition-all duration-500 hover:w-32"></div>
+                <p class="mt-4 text-gray-400">Mappa delle locker rooms per ogni squadra partecipante.</p>
+            </div>
+
+            <!-- Griglia Spogliatoi -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Card Spogliatoio -->
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col items-center justify-center text-center group transition-all duration-300 hover:border-varese-yellow hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] reveal cursor-pointer">
+                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-4 group-hover:bg-varese-yellow transition-colors duration-300">
+                        <i class="fas fa-door-open text-2xl text-varese-yellow group-hover:text-black transition-colors duration-300"></i>
+                    </div>
+                    <span class="text-gray-400 text-sm font-bold uppercase tracking-wider mb-1">Spogliatoio 1</span>
+                    <h3 class="text-xl font-heading text-white group-hover:text-varese-yellow transition-colors">HC Varese</h3>
+                </div>
+
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col items-center justify-center text-center group transition-all duration-300 hover:border-varese-yellow hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] reveal cursor-pointer" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-4 group-hover:bg-varese-yellow transition-colors duration-300">
+                        <i class="fas fa-door-open text-2xl text-varese-yellow group-hover:text-black transition-colors duration-300"></i>
+                    </div>
+                    <span class="text-gray-400 text-sm font-bold uppercase tracking-wider mb-1">Spogliatoio 2</span>
+                    <h3 class="text-xl font-heading text-white group-hover:text-varese-yellow transition-colors">HC Milano Bears</h3>
+                </div>
+
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col items-center justify-center text-center group transition-all duration-300 hover:border-varese-yellow hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] reveal cursor-pointer" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-4 group-hover:bg-varese-yellow transition-colors duration-300">
+                        <i class="fas fa-door-open text-2xl text-varese-yellow group-hover:text-black transition-colors duration-300"></i>
+                    </div>
+                    <span class="text-gray-400 text-sm font-bold uppercase tracking-wider mb-1">Spogliatoio 3</span>
+                    <h3 class="text-xl font-heading text-white group-hover:text-varese-yellow transition-colors">Como Nuoto</h3>
+                </div>
+
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col items-center justify-center text-center group transition-all duration-300 hover:border-varese-yellow hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] reveal cursor-pointer" style="transition-delay: 300ms;">
+                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-4 group-hover:bg-varese-yellow transition-colors duration-300">
+                        <i class="fas fa-door-open text-2xl text-varese-yellow group-hover:text-black transition-colors duration-300"></i>
+                    </div>
+                    <span class="text-gray-400 text-sm font-bold uppercase tracking-wider mb-1">Spogliatoio 4</span>
+                    <h3 class="text-xl font-heading text-white group-hover:text-varese-yellow transition-colors">Real Torino</h3>
+                </div>
+                
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-6 flex flex-col items-center justify-center text-center group transition-all duration-300 hover:border-varese-yellow hover:-translate-y-2 hover:shadow-[0_0_20px_rgba(251,191,36,0.2)] reveal cursor-pointer">
+                    <div class="w-16 h-16 bg-black rounded-full flex items-center justify-center mb-4 group-hover:bg-varese-yellow transition-colors duration-300">
+                        <i class="fas fa-door-open text-2xl text-varese-yellow group-hover:text-black transition-colors duration-300"></i>
+                    </div>
+                    <span class="text-gray-400 text-sm font-bold uppercase tracking-wider mb-1">Spogliatoio 5</span>
+                    <h3 class="text-xl font-heading text-white group-hover:text-varese-yellow transition-colors">Arbitri</h3>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Principale -->
+    <footer class="bg-zinc-950 pt-16 pb-16 border-t border-varese-yellow/20 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+
+            <!-- Logo Piccolo -->
+            <img src="cittadivarese.svg" alt="Logo Piccolo" class="w-32 mx-auto mb-6 opacity-80 drop-shadow-md">
+            
+            <p class="text-white text-xs font-light">
+                &copy; 2026 Torneo U12 Città di Varese. Tutti i diritti riservati.<br>
+                Hockey Club Varese 1977 S.C.S.D.
+            </p>
+
+        </div>
+    </footer>
+
+    <!-- Pulsante Fluttuante Torna Su -->
+    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 group flex items-center justify-center w-14 h-14 bg-varese-yellow text-black rounded-full hover:bg-white hover:scale-110 transition-all duration-300 shadow-[0_0_15px_rgba(251,191,36,0.6)] hover:shadow-[0_0_25px_rgba(255,255,255,0.8)] opacity-0 invisible translate-y-5">
+        <i class="fas fa-arrow-up text-xl transition-transform duration-300 group-hover:-translate-y-1"></i>
+    </button>
+
+    <!-- SCRIPT -->
+    <script>
+        // 1. Gestione del Menu Mobile con animazione Smooth
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            if (menu.classList.contains('max-h-0')) {
+                menu.classList.remove('max-h-0', 'opacity-0');
+                menu.classList.add('max-h-96', 'opacity-100');
+            } else {
+                menu.classList.add('max-h-0', 'opacity-0');
+                menu.classList.remove('max-h-96', 'opacity-100');
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
+
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // 2. Navbar Dinamica e Pulsante Back to Top allo Scroll
+        const navbar = document.getElementById('navbar');
+        const backToTopBtn = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            // Mostra o nasconde il bottone fluttuante "Torna su"
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-5');
+                backToTopBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-5');
+                backToTopBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            }
+        });
+
+        // 3. Scroll Reveal Animation Perenne
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 50; 
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                } else {
+                    reveals[i].classList.remove("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+    </script>
+</body>
+</html>
